@@ -18,7 +18,10 @@ def encdoi(caminhopdf):
             pagdoi = 'naoencontroudoi'
         temp.close()
         texto2 = None
+        textodoi = ''
         for inhon in pagdoi.splitlines():
+            if textodoi.startswith('10.'):
+                break
             if 'DOI:' in inhon or 'doi:' in inhon or '10.' in inhon and '/' in inhon:
                 textodoi = str(inhon)
                 if not textodoi.startswith(('DOI:', 'doi:', 'https', 'doi.org', 'http:')):
@@ -91,4 +94,4 @@ def encdoi(caminhopdf):
     #
     # print(f'Doi encontrado: {doifinal}')
 
-# print(encdoi(r"C:\Users\dan\Desktop\Litwin2020_Article_EntomopathogenicFungiUnconvent.pdf")) # Teste
+# print(encdoi(r"C:\Users\steff\Downloads\Chen2021_Article_OnTheSporeOrnamentationOfTheMi.pdf")) # Teste
