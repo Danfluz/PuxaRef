@@ -17,6 +17,7 @@ def encdoi(caminhopdf):
         if pagdoi == 'xyz':
             pagdoi = 'naoencontroudoi'
         temp.close()
+        texto2 = None
         for inhon in pagdoi.splitlines():
             if 'DOI:' in inhon or 'doi:' in inhon or '10.' in inhon and '/' in inhon:
                 textodoi = str(inhon)
@@ -25,7 +26,10 @@ def encdoi(caminhopdf):
                     for texto in textodoi:
                         if '10.' in texto and '/' in texto:
                             texto2 = texto
-                    textodoi = texto2
+                    if texto2 != None:
+                        textodoi = texto2
+                if type(textodoi) != str:
+                    textodoi = f'Erro ao encontrar o DOI: {textodoi}'
                 if textodoi.startswith('DOI: '):
                     textodoi = textodoi.strip('DOI: ')
                 if textodoi.startswith('https://doi.org/'):
