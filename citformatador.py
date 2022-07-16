@@ -7,8 +7,8 @@ from puxaref import formatador
 def menu():
     sg.theme('lightgreen')
     layout = [
-        [sg.Text('', size=(35,5)), sg.Text('Criador de Referencias',size=(25,1),font=('Arial, 20')), sg.T('PuxaRef  ver. 1.0', font=('Arial, 10'))],
-        [sg.Text('', size=(48,5)), sg.Image(r"img\iconpaper.png",size=(75,75),subsample=(5))],
+        [sg.Text('', size=(35, 5)), sg.Text('Criador de Referencias',size=(25,1),font=('Arial, 20')), sg.T('PuxaRef  ver. 1.1', font=('Arial, 10'))],
+        [sg.Text('', size=(48, 5)), sg.Image(r"img\iconpaper.png",size=(75,75),subsample=(5))],
         [sg.Text('', size=(30, 1)), sg.Text('', size=(35, 1)), sg.Text('', size=(41, 1))],
         [sg.Text('', size=(35, 1)), sg.Text('Escolha o PDF:', size=(15, 1), font='Arial, 15'), sg.FilesBrowse('Selecione', file_types=(("PDFs de Artigos", "*.pdf"),), size=(15, 1), key='arquivopdf')],
         [sg.Text('', size=(48, 5)), sg.Submit('Formatar', size=(8, 1),key='format'), sg.Text('', size=(41, 1))],
@@ -44,13 +44,13 @@ while True:
                 try:
                     ref1 = str(formatador(caminhodoarquivo))
                     if ref1 == "Erro-nao-ok":
-                        ref1 = f'{arqpdfcopy}: Erro ao criar referencia'
+                        ref1 = f'>{arqpdfcopy}: Erro ao criar referencia'
                     organizaref.append(ref1 + '\n\n')
                 except:
-                    ref1 = f'{arqpdfcopy}: Erro1 ao criar referencia\n\n'
+                    ref1 = f'>{arqpdfcopy}: Erro1 ao criar referencia\n\n'
                     organizaref.append(ref1)
 
-
+        organizaref.sort()
         referenciapronta = ''.join(organizaref)
         organizaref = []
 

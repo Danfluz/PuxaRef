@@ -1,6 +1,5 @@
 import pdfplumber
 
-
 def encdoi(caminhopdf):
     naoencontroudoi = True
     with pdfplumber.open(caminhopdf) as temp:
@@ -14,6 +13,7 @@ def encdoi(caminhopdf):
             for page in temp.pages:
                 if 'DOI:' in page.extract_text() or 'doi:' in page.extract_text() or 'doi.org' in page.extract_text():
                     pagdoi = str(page.extract_text())
+                    break
         if pagdoi == 'xyz':
             pagdoi = 'naoencontroudoi'
         temp.close()
